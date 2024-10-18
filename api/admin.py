@@ -4,7 +4,8 @@ from .models import UserOS, Gate
 
 
 class UserOSAdmin(admin.ModelAdmin):
-    list_display = ('login', 'add_date', 'is_working',)
+    list_display = ('pk', 'login', 'add_date', 'num_pass', 'is_working',)
+    list_display_links = ('pk', 'login',)
     list_editable = ('is_working',)
     search_fields = ('login',)
     list_filter = ('is_working',)
@@ -12,7 +13,8 @@ class UserOSAdmin(admin.ModelAdmin):
 
 
 class GateAdmin(admin.ModelAdmin):
-    list_display = ('title',)
+    list_display = ('pk', 'title',)
+    list_display_links = ('pk', 'title',)
     search_fields = ('title',)
     empty_value_display = '-пусто-'
 

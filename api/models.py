@@ -7,10 +7,18 @@ class UserOS(models.Model):
         verbose_name='Имя пользователя в операционной системе',
         unique=True
     )
+
     add_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата обнаружения'
     )
+
+    @property
+    def num_pass(self) -> str:
+        return self.login + str(self.add_date.timestamp())
+
+    num_pass.fget.short_description = 'Номер пропуска'
+
     is_working = models.BooleanField(
         default=False,
         verbose_name='Пользователь работает'
