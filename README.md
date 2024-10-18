@@ -28,7 +28,12 @@ python3 manage.py gates_import
 Добавить в cron запуск скрипта добавления пользователей в систему мониторинга на основании учётных записей пользователей операционной системы Linux с интервалом 5 минут  
 ```  
 sudo crontab -e  
-*/5	* * * * /path/to/gates_for_rusel/venv/bin/python3 /path/to/gates_for_rusel/manage.py users_os_import  
+*/5 * * * * /path/to/gates_for_rusel/venv/bin/python3 /path/to/gates_for_rusel/manage.py users_os_import  
+```  
+
+Перейти в браузере по адресу  
+```  
+http://127.0.0.1:8000/api/v1/  
 ```  
 
 По окончании использования деактивировать окружение  
