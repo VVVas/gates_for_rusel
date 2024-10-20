@@ -17,7 +17,7 @@ class GateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Gate
-        fields = ('id', 'title',)
+        fields = ('id', 'title', 'working_hours_up_to',)
 
 
 class UserOSSerializer(serializers.ModelSerializer):

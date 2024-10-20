@@ -40,6 +40,13 @@ class Gate(models.Model):
         unique=True
     )
 
+    working_hours_up_to = models.TimeField(
+        verbose_name='Время работы, до',
+        blank=True,
+        null=True,
+        default=None,
+    )
+
     class Meta:
         ordering = ('title',)
         verbose_name = 'КПП'
