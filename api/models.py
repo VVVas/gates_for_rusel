@@ -47,3 +47,39 @@ class Gate(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Visit(models.Model):
+    user = models.ForeignKey(
+        UserOS,
+        on_delete=models.CASCADE,
+        related_name='visit',
+        verbose_name='Пользователь ОС'
+    )
+    is_enter = models.BooleanField(
+        default=None,
+        verbose_name='Пользователь вошёл'
+    )
+    gate = models.ForeignKey(
+        Gate,
+        on_delete=models.CASCADE,
+        related_name='visit',
+        verbose_name='КПП'
+    )
+    num_pass = models.CharField(
+        max_length=600,
+        verbose_name='Номер пропуска'
+    )
+    date = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата прохода'
+    )
+
+    class Meta:
+        ordering = ('date',)
+        verbose_name = 'Проход пользователя ОС'
+        verbose_name_plural = 'Проходы пользователей ОС'
+
+    def __str__(self) -> str:
+        text_is_enter = 'вошёл' if self.is_enter else 'вышёл'
+        return f'{self.user} {text_is_enter} в {self.date} с {self.num_pass}'

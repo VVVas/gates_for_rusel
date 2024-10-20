@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import UserOS, Gate
+from .models import Gate, UserOS, Visit
 
 
 class UserOSAdmin(admin.ModelAdmin):
@@ -19,5 +19,15 @@ class GateAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
-admin.site.register(UserOS, UserOSAdmin)
+class VisitAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'user', 'is_enter', 'gate', 'num_pass', 'date',)
+    list_display_links = ('pk', 'user',)
+    list_editable = ('is_enter',)
+    search_fields = ('user',)
+    list_filter = ('is_enter',)
+    empty_value_display = '-пусто-'
+
+
 admin.site.register(Gate, GateAdmin)
+admin.site.register(UserOS, UserOSAdmin)
+admin.site.register(Visit, VisitAdmin)

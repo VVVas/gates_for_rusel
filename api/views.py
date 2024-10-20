@@ -1,7 +1,7 @@
-from rest_framework import viewsets
+from rest_framework import mixins, viewsets
 
-from .models import Gate, UserOS
-from .serializers import GateSerializer, UserOSSerializer
+from .models import Gate, UserOS, Visit
+from .serializers import GateSerializer, UserOSSerializer, VisitSerializer
 
 
 class GateViewSet(viewsets.ModelViewSet):
@@ -14,3 +14,10 @@ class UserOSViewSet(viewsets.ModelViewSet):
     queryset = UserOS.objects.all()
     serializer_class = UserOSSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
+
+
+class VisitViewSet(mixins.CreateModelMixin,
+                   mixins.ListModelMixin,
+                   viewsets.GenericViewSet):
+    queryset = Visit.objects.all()
+    serializer_class = VisitSerializer
